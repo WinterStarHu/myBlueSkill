@@ -1,0 +1,78 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/posh-theme.json",
+  "version": 3,
+  "final_space": true,
+  "palette": {
+    "mauve": "#cba6f7",
+    "blue": "#89b4fa",
+    "green": "#a6e3a1",
+    "yellow": "#f9e2af",
+    "red": "#f38ba8",
+    "teal": "#94e2d5",
+    "peach": "#fab387",
+    "subtext": "#7f849c"
+  },
+  "blocks": [
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "os",
+          "style": "plain",
+          "foreground": "p:mauve",
+          "template": "{{.Icon}} "
+        },
+        {
+          "type": "path",
+          "style": "plain",
+          "foreground": "p:blue",
+          "template": "{{ .Path }}",
+          "properties": {
+            "folder_separator_icon": "/",
+            "style": "agnoster_short",
+            "max_depth": 3
+          }
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "p:green",
+          "template": " {{ .HEAD }}",
+          "properties": {
+            "branch_icon": "",
+            "fetch_status": true
+          }
+        },
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "foreground": "p:subtext",
+          "template": " {{ .Pretty }}",
+          "properties": {
+            "threshold": 2000,
+            "style": "round"
+          }
+        },
+        {
+          "type": "root",
+          "style": "plain",
+          "foreground": "p:red",
+          "template": " #"
+        }
+      ]
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "p:mauve",
+          "template": "❯ "
+        }
+      ]
+    }
+  ]
+}
