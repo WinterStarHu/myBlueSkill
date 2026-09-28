@@ -1,7 +1,7 @@
 ---
 name: pretty-powershell
 description: This skill should be used when the user asks to "美化 PowerShell", "美化 powershell", "pretty powershell", "set up oh-my-posh", "Catppuccin terminal theme", "Windows Terminal theme", "护眼终端配色", "custom prompt", or wants to improve the PowerShell prompt, colors, font, tab-completion, or history prediction on Windows. Installs PowerShell 7, a Nerd Font, oh-my-posh with a Catppuccin Mocha theme, and PSReadLine enhancements, all user-scope without admin rights.
-version: 0.1.0
+version: 0.1.1
 ---
 
 # Pretty PowerShell (Catppuccin Mocha)

@@ -96,8 +96,26 @@ Only occurs when the profile runs in a non-interactive / redirected context (e.g
 ### oh-my-posh command not found after install
 winget installs register a user PATH entry that the current shell session has not picked up. Open a new Windows Terminal tab/window.
 
-### Prompt renders blank
-Verify the theme path exists at `$HOME\Documents\PowerShell\omp-catppuccin.json` and that the profile line `oh-my-posh init pwsh --config ...` ran. Run `oh-my-posh debug --config <path> --pwd $HOME` to inspect segment rendering.
+### Prompt renders blank (no path, no `❯`, empty line)
+
+Most common cause on oh-my-posh v31+: the theme's `blocks` are missing the required `"type"` field. Older oh-my-posh defaulted a typeless block to `"prompt"`; v31 tightened this and a block without `"type": "prompt"` (or `rprompt`/`secondary`) renders nothing — so the whole prompt collapses to empty whitespace even though every segment is valid.
+
+Fix: every block in `omp-catppuccin.json` must declare its type:
+
+```json
+"blocks": [
+  {
+    "type": "prompt",        // <-- required on every block
+    "alignment": "left",
+    "newline": true,
+    "segments": [ ... ]
+  }
+]
+```
+
+Verify with `oh-my-posh print primary --config <path> --shell pwsh --pwd $HOME --force --plain` — it should print the OS icon, path, and `❯`, not an empty line. If still empty, clear the oh-my-posh cache (`%LOCALAPPDATA%\Packages\ohmyposh.cli_*\LocalCache\Local\oh-my-posh\*.omp.cache` and `init.*.ps1`) with all terminals closed, then reopen.
+
+Also check: the theme path exists at `$HOME\Documents\PowerShell\omp-catppuccin.json` and the profile line `oh-my-posh init pwsh --config ...` ran. Run `oh-my-posh debug --config <path> --pwd $HOME` to inspect per-segment rendering.
 
 ## PSReadLine Keybindings
 
